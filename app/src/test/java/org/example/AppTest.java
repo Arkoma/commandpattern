@@ -3,12 +3,21 @@
  */
 package org.example;
 
+import org.commandpattern.App;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootContextLoader;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringBootTest(classes = App.class)
 class AppTest {
+
+    @Autowired
+    private ApplicationContext applicationContext;
     @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+        assertTrue(applicationContext.getBeanDefinitionCount() > 0);
     }
 }

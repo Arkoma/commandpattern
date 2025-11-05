@@ -7,7 +7,8 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    application
+    id("java")
+    id("application")
 }
 
 repositories {
@@ -17,12 +18,15 @@ repositories {
 
 dependencies {
     // Use JUnit Jupiter for testing.
+    testImplementation(libs.springboot.starter.test)
     testImplementation(libs.junit.jupiter)
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // This dependency is used by the application.
     implementation(libs.guava)
+    implementation(libs.springboot.starter.data.jpa)
+    implementation(libs.h2)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -34,7 +38,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "org.commandpattern.App"
 }
 
 tasks.named<Test>("test") {
